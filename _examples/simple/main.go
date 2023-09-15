@@ -2,16 +2,14 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"path"
 	"runtime"
-
-	"os"
-
 	"time"
 
-	"github.com/caicloud/nirvana/log"
-	"github.com/skit-ai/go-dub"
+	godub "github.com/skit-ai/go-dub"
 	"github.com/skit-ai/go-dub/converter"
+	"github.com/skit-ai/vcore/log"
 )
 
 func main() {

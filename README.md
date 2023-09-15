@@ -28,7 +28,7 @@ func main() {
 	segment, _ := godub.NewLoader().Load(filePath)
 	fmt.Println(segment)
 
-	buf, _ := ioutil.ReadAll()
+	buf, _ := os.ReadAll()
 
 	// Load from buffer, load also accepts `io.Reader` type.
 	segment, _ = godub.NewLoader().Load(bytes.NewReader(buf))

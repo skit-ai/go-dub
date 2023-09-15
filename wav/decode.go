@@ -1,12 +1,10 @@
 package wav
 
 import (
+	"bytes"
 	"encoding/binary"
 	"fmt"
 	"io"
-	"io/ioutil"
-
-	"bytes"
 )
 
 func Decode(r io.Reader) (*WaveAudio, error) {
@@ -24,7 +22,7 @@ type Decoder struct {
 }
 
 func NewDecoder(r io.Reader) (*Decoder, error) {
-	buf, err := ioutil.ReadAll(r)
+	buf, err := io.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}
