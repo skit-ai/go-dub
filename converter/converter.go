@@ -6,12 +6,11 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"path"
 	"runtime"
 	"strings"
 
-	"path"
-
-	"github.com/iFaceless/godub/utils"
+	"github.com/skit-ai/go-dub/utils"
 	"github.com/tink-ab/tempfile"
 )
 

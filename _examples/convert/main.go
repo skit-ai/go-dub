@@ -6,10 +6,9 @@ import (
 	"os"
 	"path"
 	"runtime"
-
 	"strings"
 
-	"github.com/iFaceless/godub/converter"
+	"github.com/skit-ai/go-dub/converter"
 )
 
 var (

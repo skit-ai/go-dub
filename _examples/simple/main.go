@@ -9,9 +9,9 @@ import (
 
 	"time"
 
-	"github.com/iFaceless/godub"
-	"github.com/iFaceless/godub/converter"
 	"github.com/caicloud/nirvana/log"
+	"github.com/skit-ai/go-dub"
+	"github.com/skit-ai/go-dub/converter"
 )
 
 func main() {

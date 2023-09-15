@@ -8,8 +8,8 @@ import (
 	"path"
 	"runtime"
 
-	"github.com/iFaceless/godub"
-	"github.com/iFaceless/godub/signals"
+	"github.com/skit-ai/go-dub"
+	"github.com/skit-ai/go-dub/signals"
 )
 
 func main() {
