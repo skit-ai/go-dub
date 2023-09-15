@@ -16,6 +16,14 @@ func Decode(r io.Reader) (*WaveAudio, error) {
 	return d.Decode()
 }
 
+// DecodeFromBytes decodes []bytes in WaveAudio without using an io.Reader in-between.
+func DecodeFromBytes(buf []byte) (*WaveAudio, error) {
+	d := &Decoder{buffer: buf}
+	d.chunks = d.readChunks()
+
+	return d.Decode()
+}
+
 type Decoder struct {
 	buffer []byte
 	chunks []Chunk

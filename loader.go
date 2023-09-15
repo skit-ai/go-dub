@@ -51,7 +51,7 @@ func (l *Loader) Load(src interface{}) (*AudioSegment, error) {
 	}
 
 	// Try to decode it as wave audio
-	waveAudio, err := wav.Decode(bytes.NewReader(buf))
+	waveAudio, err := wav.DecodeFromBytes(buf)
 	if err != nil {
 		// Try to convert to wave audio, and decode it again!
 		var tmpWavBuf bytes.Buffer
