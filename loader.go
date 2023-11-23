@@ -52,6 +52,11 @@ func (l *Loader) Load(src interface{}) (*AudioSegment, error) {
 		return nil, fmt.Errorf("expected `io.Reader` or file path to original audio")
 	}
 
+	// Empty buffer
+	if len(buf) == 0 {
+		return nil, nil
+	}
+
 	// Try to decode it as wave audio
 	waveAudio, err := wav.DecodeFromBytes(buf)
 	if err != nil {
