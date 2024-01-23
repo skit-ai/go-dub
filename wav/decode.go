@@ -30,12 +30,14 @@ type Decoder struct {
 }
 
 func NewDecoder(r io.Reader) (*Decoder, error) {
-	buf, err := io.ReadAll(r)
+	buf := &bytes.Buffer{}
+
+	_, err := io.Copy(buf, r)
 	if err != nil {
 		return nil, err
 	}
 
-	d := &Decoder{buffer: buf}
+	d := &Decoder{buffer: buf.Bytes()}
 	d.chunks = d.readChunks()
 
 	return d, nil
