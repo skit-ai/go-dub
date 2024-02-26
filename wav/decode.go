@@ -37,14 +37,10 @@ func NewDecoder(r io.Reader) (*Decoder, error) {
 		return nil, err
 	}
 
-	// Copy the buffer's content into a new byte slice to free the buffer.
-	content := make([]byte, buf.Len())
-	copy(content, buf.Bytes())
-
 	// Reset the buffer to release memory
-	buf.Reset()
+	defer buf.Reset()
 
-	d := &Decoder{buffer: content}
+	d := &Decoder{buffer: buf.Bytes()}
 	d.chunks = d.readChunks()
 
 	return d, nil
