@@ -62,6 +62,10 @@ func (l *Loader) Load(src interface{}) (*AudioSegment, error) {
 	if err != nil {
 		// Try to convert to wave audio, and decode it again!
 		var tmpWavBuf bytes.Buffer
+
+		// Reset temp buffer after use.
+		defer tmpWavBuf.Reset()
+
 		conv := converter.NewConverter(&tmpWavBuf).WithDstFormat("wav")
 		e := conv.Convert(bytes.NewReader(buf))
 		if e != nil {
