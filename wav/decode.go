@@ -5,8 +5,6 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
-
-	"github.com/valyala/bytebufferpool"
 )
 
 func Decode(r io.Reader) (*WaveAudio, error) {
@@ -32,14 +30,15 @@ type Decoder struct {
 }
 
 func NewDecoder(r io.Reader) (*Decoder, error) {
-	buf := bytebufferpool.Get()
-
-	defer bytebufferpool.Put(buf)
+	buf := &bytes.Buffer{}
 
 	_, err := io.Copy(buf, r)
 	if err != nil {
 		return nil, err
 	}
+
+	// Reset the buffer to release memory
+	defer buf.Reset()
 
 	d := &Decoder{buffer: buf.Bytes()}
 	d.chunks = d.readChunks()
