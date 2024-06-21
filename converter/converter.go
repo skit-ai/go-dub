@@ -1,6 +1,7 @@
 package converter
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"os"
@@ -216,9 +217,15 @@ func (c *Converter) doConvert() error {
 	c.extendExtraArgs()
 	c.extendCmdArgs(dstFile.Name())
 
+	var outBuf, errBuf bytes.Buffer
+
+	c.cmd.Stderr = &errBuf
+	c.cmd.Stdout = &outBuf
+
 	err = c.cmd.Run()
 	if err != nil {
-		return EncodeError(fmt.Sprintf("encoding failed: %s", err))
+		fmt.Println(errBuf.String(), outBuf.String())
+		return EncodeError(fmt.Sprintf("encoding failed: %s %s %s", err, errBuf.String(), outBuf.String()))
 	}
 
 	// Copy to dst writer

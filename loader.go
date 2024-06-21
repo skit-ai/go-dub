@@ -67,7 +67,7 @@ func (l *Loader) Load(src interface{}) (*AudioSegment, error) {
 		defer tmpWavBuf.Reset()
 
 		conv := converter.NewConverter(&tmpWavBuf).WithDstFormat("wav")
-		e := conv.Convert(bytes.NewReader(buf))
+		e := conv.Convert(src)
 		if e != nil {
 			return nil, e
 		}
